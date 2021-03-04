@@ -31,12 +31,13 @@ print(res)
 
 def func(data, left, right):
     temp = data[left]
-    while left < right and data[right] >= temp:
-        right -= 1
-    data[left] = data[right]
-    while left < right and data[left] <= temp:
-        left += 1
-    data[right] = data[left]
+    while left < right:
+        while left < right and data[right] >= temp:
+            right -= 1
+        data[left] = data[right]
+        while left < right and data[left] <= temp:
+            left += 1
+        data[right] = data[left]
     data[left] = temp
     return left
 
@@ -51,6 +52,22 @@ def quick_sort(data, left, right):
 data = [3, 45, 67, 2, 45, 1]
 quick_sort(data, 0, len(data) - 1)
 print(data)
+
+
+def er_fen(data, num):
+    left = 0
+    right = len(data) - 1
+    while left <= right:
+        mid = (left + right) // 2
+        if data[mid] > num:
+            right = mid - 1
+        elif data[mid] < num:
+            left = mid + 1
+        else:
+            return mid
+
+
+print("er_fen", er_fen(data, 3))
 
 
 def two_sun_2(nums, target):
@@ -85,7 +102,6 @@ def fib(num):
         yield b
         a, b = b, a + b
         n = n + 1
-
 
 # g = fib(50)
 # for i in range(50):
